@@ -63,6 +63,10 @@ Advanced
    ├── Probes
    └── Lifecycle
 
+Pre-Requisities:
+
+aws --version
+kubectl version --client
 
 ##How to connect to  EKS cluster
 aws eks update-kubeconfig \
@@ -77,7 +81,17 @@ kubectl get nodes -o wide
 kubectl cluster-info 
 kubectl api-resources #list all the apis
 
-##how to create namespace
+AWS
+ │
+ └── EKS Cluster
+       │
+       ├── Control Plane
+       │
+       └── Worker Nodes
+             │
+             └── Kubernetes Resources
+
+##how to create namespace ## Namespaces provide logical isolation inside a Kubernetes cluster.
 1.To create it via command line using kubectl use below command 
    kubectl create ns <your-namespace-name>
 2.To create via the yaml file,use namespace.yaml and run below command
@@ -85,6 +99,9 @@ kubectl api-resources #list all the apis
 
 
 ##How to create a pod
+
+A Pod is the smallest deployable unit in Kubernetes. A Pod normally contains one application container, although it can contain multiple tightly coupled containers.
+
 1.We can create a pod using kubectl pod command but not recommended
 2.The ideal way to create a pod is using pod manifest that is pod.yaml using command
     kubectl apply -f pod.yaml -n <your-namespace-name>
@@ -99,3 +116,15 @@ kubectl api-resources #list all the apis
 ##commands for replicaset.yaml
     kubectl get rs -n k8s-demo
     kubectl get pods -n k8s-demo 
+
+    ##Deployment
+
+    Why Deployment?
+
+ReplicaSet handles replicas, but Deployment gives us:
+
+Rolling updates
+Rollbacks
+Version management
+ReplicaSet management
+
